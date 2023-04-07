@@ -1,0 +1,24 @@
+{
+  "name": "s23wb69lakkireddy",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "^4.3.4",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "http-errors": "^2.0.0",
+    "mongodb": "^5.2.0",
+    "mongoose": "^7.0.3",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.2"
+  },
+  "description": "Govardhan started PUG web changes.\r [GitHUB](https://github.com/Govardhan2164/s23wb69lakkireddy/tree/main)\r [Render Server](https://s23wb69lakkireddy.onrender.com)<br>\r class trees{ String trees_Name; integer trees_height; integer trees_cost; public(String trees_Name,integer trees_height,integer trees_cost) { this.trees_Name=trees_Name; this.trees_height=trees_height; this.trees_cost= trees_cost; } }",
+  "main": "app.js",
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
+}

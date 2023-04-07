@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  - var trees=[{trees_Name:"palm",trees_height:"100ft",trees_cost:400},{trees_Name:"Bamboo",trees_height:"150ft",trees_cost:1000},{trees_Name:"Neem",trees_height:"50ft",trees_cost:700}]
+  div(class="container-fluid")
+  div(class="row")
+   each j,index  in trees
+    div(class="col-sm-2" onclick =`buy(${index})`) #{j.trees_Name}, #{j.trees_height}, #{j.trees_cost}
+    script.
+        function buy(a)
+        {
+            alert(`You purchased Item ${a+1}`)
+        }
