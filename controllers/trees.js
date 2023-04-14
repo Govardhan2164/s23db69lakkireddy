@@ -56,8 +56,8 @@ exports.trees_create_post = async function(req, res) {
     // We are looking for a body, since POST does not have query parameters.
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
-    // {"trees_type":"goat", "cost":12, "size":"large"}
-    document.trees_Name = req.body.trees_type;
+    // {"trees_Name":"goat", "cost":12, "size":"large"}
+    document.trees_Name = req.body.trees_Name;
     document.trees_height = req.body.trees_size;
     document.trees_cost = req.body.trees_cost;
     try{
@@ -68,4 +68,44 @@ exports.trees_create_post = async function(req, res) {
     res.status(500);
     res.send(`{"error": ${err}}`);
     }
+};
+// for a specific trees.
+exports.trees_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await trees.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+    };
+    
+
+
+    // Handle trees update form on PUT.
+exports.trees_update_put = async function(req, res) {
+ console.log(`update on id ${req.params.id} with body
+${JSON.stringify(req.body)}`)
+ try {
+ let toUpdate = await trees.findById( req.params.id)
+ if(req.body.checkboxsale) 
+   toUpdate.sale = true;
+ else 
+   toUpdate.same = false;
+ // Do updates of properties
+ if(req.body.trees_Name)
+   toUpdate.trees_Name = req.body.trees_Name;
+ if(req.body.trees_height) 
+   toUpdate.trees_height = req.body.trees_height;
+ if(req.body.trees_cost) 
+   toUpdate.trees_cost = req.body.trees_cost;
+ let result = await toUpdate.save();
+ console.log("Sucess " + result)
+ res.send(result)
+ } catch (err) {
+ res.status(500)
+ res.send(`{"error": ${err}: Update for id ${req.params.id}
+failed`);
+ }
 };
