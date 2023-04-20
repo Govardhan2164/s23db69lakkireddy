@@ -3,6 +3,7 @@ var router = express.Router();
 // Require controller modules.
 var api_controller = require('../controllers/api');
 var trees_controller = require('../controllers/trees');
+
 /// API ROUTE ///
 // GET resources base.
 router.get('/', api_controller.api);
@@ -18,3 +19,5 @@ router.get('/trees/:id', trees_controller.trees_detail);
 // GET request for list of all trees items.
 router.get('/trees', trees_controller.trees_list);
 module.exports = router;
+/* GET detail trees page */
+router.get('/detail', trees_controller.trees_view_one_Page);

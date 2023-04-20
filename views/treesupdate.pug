@@ -1,0 +1,42 @@
+extends layout
+block content
+ h1= title
+ if (toShow == null)
+   h2 No instance to update
+ else
+  - let treesid = toShow._id
+  - let trees_Name = toShow.trees_Name
+  - let trees_height = toShow.trees_height
+  - let trees_cost = toShow.trees_cost
+  div.row(class='mb-2')
+  div.mr-1 ID is
+  div #{treesid}
+  - let actionid = "/resource/trees/" + treesid
+  form(id='treesForm', action= actionid, method="PUT")
+   div.form-group
+     label.treesAttr(for='trees_Name') trees Name
+     input#trees_Name(type='text', name='trees_Name', value= trees_Name )
+   div.form-group
+     label.treesAttr(for='trees_height') trees height
+     input#trees_height(type='text', name='trees_height', value= trees_height )
+   div.form-group
+     label.treesAttr(for='trees_cost') trees cost
+     input#trees_cost(type='number', name='trees_cost', value= trees_cost )
+   input(type="submit")
+  script.
+   document.forms['treesForm'].addEventListener('submit', (event) => {
+    event.preventDefault();
+    // TODO do something here to show user that form is being submitted
+    fetch(event.target.action, {
+      method: 'PUT',
+      body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+     }).then((resp) => {
+      return resp.json(); // or resp.text() or whatever the server sends
+     }).then((body) => {
+      alert("Update succeded")
+      // TODO handle body
+    }).catch((error) => {
+     // TODO handle error
+     alert("Update failed " + error )
+    });
+   });

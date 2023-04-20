@@ -1,0 +1,50 @@
+extends layout
+block content
+ h1= title
+ if (toShow == null)
+  h2 No instance to delete
+ else
+  - let treesid = toShow._id
+  - let trees_Name = toShow.trees_Name
+  - let trees_height = toShow.trees_height
+  - let trees_cost = toShow.trees_cost
+  - let actionid = "/resource/trees/" + treesid
+  script let actionid = "#{actionid}"
+  div
+   div.row
+    div(class='treesAttr mr-3') trees ID is:
+    div #{treesid}
+   div.row
+    div(class='treesAttr mr-3') trees Name is:
+    div #{trees_Name}
+   div.row
+    div(class='treesAttr mr-3') trees Height is:
+    div #{trees_height}
+   div.row
+    div(class='treesAttr mr-3') trees Cost is:
+    div #{trees_cost}
+  button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+  button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+ script.
+  function cancel() {
+   // Go back to the home page for the costume collection
+   window.location.href='/trees'
+  }
+ script.
+  function deleteOnid() {
+   console.log("starting delete")
+   // delete first
+   fetch(actionid, {
+    method: 'DELETE' // Don't need a body for the delete
+   }).then((resp) => {
+    return resp.json(); // or resp.text() or whatever the server sends
+   }).then((body) => {
+    alert("Delete succeded")
+    window.location.href='/trees'
+    // TODO handle body
+   }).catch((error) => {
+    // TODO handle error
+    alert("Delete failed " + error )
+    });
+   }

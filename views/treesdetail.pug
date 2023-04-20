@@ -1,0 +1,22 @@
+extends layout
+block content
+ h1= title
+ 
+  - let treesid = toShow._id
+  - let trees_Name = toShow.trees_Name
+  - let trees_height = toShow.trees_height
+  - let trees_cost = toShow.trees_cost
+
+  div
+    div.row
+     div(class='treesAttr mr-3') trees ID is:
+     div #{treesid}
+    div.row
+     div(class='treesAttr mr-3') trees Name is:
+     div #{trees_Name}
+    div.row
+     div(class='treesAttr mr-3') trees Height is:
+     div #{trees_height}
+    div.row
+     div(class='treesAttr mr-3') trees Cost is:
+     div #{trees_cost}
