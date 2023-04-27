@@ -1,13 +1,15 @@
 extends layout
 block content
  h1= title
- 
+ if (toShow == null)
+  h2 No instance to delete
+ else
   - let treesid = toShow._id
   - let trees_Name = toShow.trees_Name
   - let trees_height = toShow.trees_height
   - let trees_cost = toShow.trees_cost
 
-  div
+   div
     div.row
      div(class='treesAttr mr-3') trees ID is:
      div #{treesid}

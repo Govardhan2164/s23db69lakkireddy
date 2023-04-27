@@ -193,7 +193,17 @@ exports.trees_create_post = async function(req, res) {
   // {"trees_type":"goat", "cost":12, "name":"large"}
   document.trees_Name = req.body.trees_Name;
   document.trees_height = req.body.trees_height;
+//   if (!validator.isIn(req.body.trees_height, ['small', 'medium', 'large'])) {
+//     res.status(400);
+//     res.send(`{"error": "Invalid height value."}`);
+//     return;
+// }
   document.trees_cost = req.body.trees_cost;
+//   if (!validator.isFloat(req.body.cost.toString(), { min: 0, max: 1000 })) {
+//     res.status(400);
+//     res.send(`{"error": "Invalid cost value."}`);
+//     return;
+// }
   try{
   let result = await document.save();
   res.send(result);

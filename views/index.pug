@@ -1,20 +1,32 @@
-extends layout
+//- extends layout
 
+//- block content
+//-   h1= title
+//-   p Govardhan Reddy Lakkireddy
+//-   p Welcome to #{title}
+//-   p This is my first repo
+//-   button(type="button" class="btn btn-secondary" onclick="doReduce()") Press Me <br>
+//-   a(href="http://localhost:3000/trees") Click Here to Visit trees Website
+//-   div#reduce Reduce the value
+//-   script.
+//-     let count = 20;
+//-     let change = -1;
+//-     function doReduce() {
+//-       count += change;
+//-       change -= 1;
+//-       document.getElementById('reduce').textContent = `Count ${count} with change ${change}`;
+//-     }
+//-   //a(href="http://localhost:3000/trees") Click Here to Visit trees Website
+//-   //a(href="trees") trees page
+
+extends layout
 block content
-  h1= title
-  p Govardhan Reddy Lakkireddy
-  p Welcome to #{title}
-  p This is my first repo
-  button(type="button" class="btn btn-secondary" onclick="doReduce()") Press Me <br>
-  a(href="http://localhost:3000/trees") Click Here to Visit trees Website
-  div#reduce Reduce the value
-  script.
-    let count = 20;
-    let change = -1;
-    function doReduce() {
-      count += change;
-      change -= 1;
-      document.getElementById('reduce').textContent = `Count ${count} with change ${change}`;
-    }
-  //a(href="http://localhost:3000/trees") Click Here to Visit trees Website
-  //a(href="trees") trees page
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/trees") Take me to trees
+    br
+    a(href="/logout") Logout
